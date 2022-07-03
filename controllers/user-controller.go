@@ -57,7 +57,7 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 // @Success 400 {string} string "error"
 // @Success 404 {string} string "error"
 // @Success 500 {string} string "error"
-// @Router /user/get [get]
+// @Router /user/get/{name} [get]
 func (uc *UserController) GetUser(ctx *gin.Context) {
 	var username string = ctx.Param("name")
 	fmt.Println(username)
@@ -128,7 +128,7 @@ func (uc *UserController) UpdateUser(ctx *gin.Context) {
 // @Success 400 {string} string "error"
 // @Success 404 {string} string "error"
 // @Success 500 {string} string "error"
-// @Router /user/delete [delete]
+// @Router /user/delete/{name} [delete]
 func (uc *UserController) DeleteUser(ctx *gin.Context) {
 	var username string = ctx.Param("name")
 	err := uc.UserService.DeleteUser(&username)

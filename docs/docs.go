@@ -57,7 +57,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/user/delete": {
+        "/user/delete/{name}": {
             "delete": {
                 "description": "create Resource directory",
                 "consumes": [

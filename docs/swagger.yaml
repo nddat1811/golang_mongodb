@@ -33,7 +33,7 @@ paths:
       summary: Create user
       tags:
       - Users
-  /user/delete:
+  /user/delete/{name}:
     delete:
       consumes:
       - application/json
@@ -70,7 +70,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get User by name
+      description: create Resource directory
       parameters:
       - description: name
         in: path
