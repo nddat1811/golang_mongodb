@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,14 +19,18 @@ func New(userService services.UserService) UserController {
 	}
 }
 
-// swagger:route POST /user/create admin createUser
-// Create user
-//
-// security:
-// - apiKey: []
-// responses:
-//  401: CommonError
-//  200: CommonSuccess
+// CreateUser godoc
+// @Summary Create user
+// @Schemes
+// @Description create Resource directory
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "success"
+// @Success 400 {string} string "error"
+// @Success 404 {string} string "error"
+// @Success 500 {string} string "error"
+// @Router /user/create [post]
 func (uc *UserController) CreateUser(ctx *gin.Context) {
 	var user models.User
 	if err := ctx.ShouldBindJSON(&user); err != nil {
@@ -40,16 +45,22 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
 }
 
-// swagger:route GET /user/get/{name} admin getUser
-// Get user by name
-//
-// security:
-// - apiKey: []
-// responses:
-//  401: CommonError
-//  200: CommonSuccess
+// GetUser godoc
+// @Summary Get user by name
+// @Schemes
+// @Description create Resource directory
+// @Tags Users
+// @Param name path string true "name"
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "success"
+// @Success 400 {string} string "error"
+// @Success 404 {string} string "error"
+// @Success 500 {string} string "error"
+// @Router /user/get [get]
 func (uc *UserController) GetUser(ctx *gin.Context) {
 	var username string = ctx.Param("name")
+	fmt.Println(username)
 	user, err := uc.UserService.GetUser(&username)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
@@ -58,14 +69,18 @@ func (uc *UserController) GetUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, user)
 }
 
-// swagger:route GET /user/getall admin getAllUser
-// Get all user by
-//
-// security:
-// - apiKey: []
-// responses:
-//  401: CommonError
-//  200: CommonSuccess
+// GetAllUser godoc
+// @Summary Get all user
+// @Schemes
+// @Description create Resource directory
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "success"
+// @Success 400 {string} string "error"
+// @Success 404 {string} string "error"
+// @Success 500 {string} string "error"
+// @Router /user/getall [get]
 func (uc *UserController) GetAll(ctx *gin.Context) {
 	users, err := uc.UserService.GetAll()
 	if err != nil {
@@ -75,14 +90,18 @@ func (uc *UserController) GetAll(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, users)
 }
 
-// swagger:route PUT /user/update admin updateUser
-// Update user
-//
-// security:
-// - apiKey: []
-// responses:
-//  401: CommonError
-//  200: CommonSuccess
+// UpdateUser godoc
+// @Summary Get user by name
+// @Schemes
+// @Description create Resource directory
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "success"
+// @Success 400 {string} string "error"
+// @Success 404 {string} string "error"
+// @Success 500 {string} string "error"
+// @Router /user/update [put]
 func (uc *UserController) UpdateUser(ctx *gin.Context) {
 	var user models.User
 	if err := ctx.ShouldBindJSON(&user); err != nil {
@@ -97,14 +116,19 @@ func (uc *UserController) UpdateUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
 }
 
-// swagger:route DELETE /user/delete/{name} admin deleteUser
-// Delete user by name
-//
-// security:
-// - apiKey: []
-// responses:
-//  401: CommonError
-//  200: CommonSuccess
+// DeleteUser godoc
+// @Summary Delete user by name
+// @Schemes
+// @Description create Resource directory
+// @Tags Users
+// @Param name path string true "name"
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "success"
+// @Success 400 {string} string "error"
+// @Success 404 {string} string "error"
+// @Success 500 {string} string "error"
+// @Router /user/delete [delete]
 func (uc *UserController) DeleteUser(ctx *gin.Context) {
 	var username string = ctx.Param("name")
 	err := uc.UserService.DeleteUser(&username)

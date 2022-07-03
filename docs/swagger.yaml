@@ -1,0 +1,161 @@
+basePath: /v1
+host: localhost:9090
+info:
+  contact: {}
+  description: This is demo server
+  title: Swagger demo MongoDB service API
+  version: "1.0"
+paths:
+  /user/create:
+    post:
+      consumes:
+      - application/json
+      description: create Resource directory
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Create user
+      tags:
+      - Users
+  /user/delete:
+    delete:
+      consumes:
+      - application/json
+      description: create Resource directory
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Delete user by name
+      tags:
+      - Users
+  /user/get/{name}:
+    get:
+      consumes:
+      - application/json
+      description: get User by name
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Get user by name
+      tags:
+      - Users
+  /user/getall:
+    get:
+      consumes:
+      - application/json
+      description: create Resource directory
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Get all user
+      tags:
+      - Users
+  /user/update:
+    put:
+      consumes:
+      - application/json
+      description: create Resource directory
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Get user by name
+      tags:
+      - Users
+securityDefinitions:
+  ApiKeyAuth:
+    in: hearder
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

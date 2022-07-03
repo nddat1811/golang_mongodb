@@ -12,6 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 
+	docs "github.com/nddat1811/golang_mongodb/docs"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -47,10 +48,21 @@ func init() {
 	server = gin.Default()
 }
 
+// @title Swagger demo MongoDB service API
+// @version 1.0
+// @description This is demo server
+// @host localhost:9090
+// @BasePath /v1
+// @securityDeifinitions.basic BasicAuth
+// @securityDefinitions.apiKey ApiKeyAuth
+// @in hearder
+// @name Authorization
+
 func main() {
 	defer mongoclient.Disconnect(ctx)
 
 	basepath := server.Group("/v1")
+	docs.SwaggerInfo.BasePath = "/v1"
 	uc.RegisterUserRoutes(basepath)
 	server.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
